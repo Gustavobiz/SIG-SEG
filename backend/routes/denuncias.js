@@ -19,6 +19,8 @@ router.post("/nova", async (req, res) => {
         titulo,
         descricao,
         localizacao,
+        cidade,
+        estado,
         status: "pendente",
       },
     });
@@ -40,8 +42,11 @@ router.get("/consulta/:codigo", async (req, res) => {
     const denuncia = await prisma.denuncia.findUnique({
       where: { codigo },
       select: {
+        titulo: true,
         descricao: true,
         localizacao: true,
+        cidade: true,
+        estado: true,
         status: true,
       },
     });
