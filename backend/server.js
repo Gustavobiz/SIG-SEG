@@ -20,3 +20,9 @@ app.use("/auth", authRoutes);
 
 const denunciasRoutes = require("./routes/denuncias");
 app.use("/denuncias", denunciasRoutes);
+
+const ocorrenciasRoutes = require("./routes/ocorrencias");
+app.use("/ocorrencias", ocorrenciasRoutes);
+
+const notificacoesRoutes = require("./routes/notificacoes");
+app.use("/notificacoes", notificacoesRoutes);
