@@ -16,6 +16,7 @@ router.post("/nova", async (req, res) => {
     const denuncia = await prisma.denuncia.create({
       data: {
         codigo,
+        titulo,
         descricao,
         localizacao,
         status: "pendente",
