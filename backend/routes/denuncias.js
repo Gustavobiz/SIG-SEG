@@ -31,7 +31,7 @@ router.post("/nova", async (req, res) => {
   }
 });
 
-// Consultar denúncia pelo código
+// Consulta denúncia pelo código
 router.get("/consulta/:codigo", async (req, res) => {
   const { codigo } = req.params;
 

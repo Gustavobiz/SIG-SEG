@@ -17,3 +17,6 @@ app.listen(PORT, () => {
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
+
+const denunciasRoutes = require("./routes/denuncias");
+app.use("/denuncias", denunciasRoutes);
