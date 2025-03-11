@@ -53,7 +53,10 @@ router.put(
     const { status } = req.body;
 
     try {
-      const ocorrencia = await prisma.ocorrencia.update({});
+      const ocorrencia = await prisma.ocorrencia.update({
+        where: { id },
+        data: { status },
+      });
 
       res.json({ message: "Status atualizado!", ocorrencia });
     } catch (error) {
