@@ -8,10 +8,10 @@ const {
 const prisma = new PrismaClient();
 const router = express.Router();
 
-// Criar ocorrência a partir de uma denúncia (apenas servidores)
+// Criar ocorrência usando uma denúncia
 router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
   const { denunciaId } = req.body;
-  const servidorId = req.user.userId; // ID do servidor autenticado
+  const servidorId = req.user.userId;
 
   try {
     // Verifica a existência da denuncia
@@ -22,7 +22,8 @@ router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
     if (!denuncia) {
       return res.status(404).json({ error: "Denúncia não encontrada" });
     }
-    // Criar ocorrência
+
+    // Cria ocorrência
     const ocorrencia = await prisma.ocorrencia.create({
       data: {
         denunciaId,
@@ -31,7 +32,6 @@ router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
       },
     });
 
-    // Atualiza status
     await prisma.denuncia.update({
       where: { id: denunciaId },
       data: { status: "em análise" },
@@ -42,3 +42,24 @@ router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
     res.status(500).json({ error: "Erro ao criar ocorrência" });
   }
 });
+
+// Atualiza status da ocorrência
+router.put(
+  "/atualizar/:id",
+  verificarToken,
+  verificarServidor,
+  async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+      const ocorrencia = await prisma.ocorrencia.update({});
+
+      res.json({ message: "Status atualizado!", ocorrencia });
+    } catch (error) {
+      res.status(500).json({ error: "Erro ao atualizar ocorrência" });
+    }
+  }
+);
+
+module.exports = router;
