@@ -8,22 +8,22 @@ const {
 const prisma = new PrismaClient();
 const router = express.Router();
 
-// Criar ocorrência usando uma denúncia
 router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
   const { denunciaId } = req.body;
-  const servidorId = req.user.userId;
+  const servidorId = req.user.userId; // ID do servidor autenticado
 
   try {
-    // Verifica a existência da denuncia
+    // Verifica se a denúncia existe
     const denuncia = await prisma.denuncia.findUnique({
       where: { id: denunciaId },
+      select: { titulo: true, cidade: true, estado: true }, // Novos campos
     });
 
     if (!denuncia) {
       return res.status(404).json({ error: "Denúncia não encontrada" });
     }
 
-    // Cria ocorrência
+    // Criar ocorrência associada à denúncia
     const ocorrencia = await prisma.ocorrencia.create({
       data: {
         denunciaId,
@@ -32,12 +32,19 @@ router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
       },
     });
 
+    // Atualizar status da denúncia
     await prisma.denuncia.update({
       where: { id: denunciaId },
       data: { status: "em análise" },
     });
 
-    res.status(201).json({ message: "Ocorrência registrada!", ocorrencia });
+    res.status(201).json({
+      message: "Ocorrência registrada!",
+      ocorrencia,
+      titulo: denuncia.titulo,
+      cidade: denuncia.cidade,
+      estado: denuncia.estado,
+    });
   } catch (error) {
     res.status(500).json({ error: "Erro ao criar ocorrência" });
   }
