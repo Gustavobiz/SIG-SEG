@@ -72,4 +72,21 @@ router.put(
   }
 );
 
+// Listar todas as ocorrências (somente servidores autenticados)
+router.get("/todas", verificarToken, verificarServidor, async (req, res) => {
+  try {
+    const ocorrencias = await prisma.ocorrencia.findMany({
+      include: {
+        denuncia: true, // Para trazer detalhes da denúncia associada
+        servidor: true, // Para trazer detalhes do servidor responsável
+      },
+    });
+
+    res.json(ocorrencias);
+  } catch (error) {
+    console.error("Erro ao listar ocorrências:", error);
+    res.status(500).json({ error: "Erro ao listar ocorrências" });
+  }
+});
+
 module.exports = router;
