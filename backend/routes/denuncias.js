@@ -31,4 +31,28 @@ router.post("/nova", async (req, res) => {
   }
 });
 
+// Consultar denúncia pelo código
+router.get("/consulta/:codigo", async (req, res) => {
+  const { codigo } = req.params;
+
+  try {
+    const denuncia = await prisma.denuncia.findUnique({
+      where: { codigo },
+      select: {
+        descricao: true,
+        localizacao: true,
+        status: true,
+      },
+    });
+
+    if (!denuncia) {
+      return res.status(404).json({ error: "Denúncia não encontrada" });
+    }
+
+    res.json(denuncia);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao buscar denúncia" });
+  }
+});
+
 module.exports = router;
