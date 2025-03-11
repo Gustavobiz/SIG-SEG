@@ -5,7 +5,11 @@ function verificarToken(req, res, next) {
   if (!token) return res.status(401).json({ error: "Acesso negado" });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Remover "Bearer " do início do token (caso esteja presente)
+    const tokenReal = token.replace("Bearer ", "").trim();
+
+    // Verificar o token com o segredo correto
+    const decoded = jwt.verify(tokenReal, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (error) {
