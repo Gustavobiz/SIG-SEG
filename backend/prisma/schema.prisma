@@ -14,19 +14,42 @@ datasource db {
 }
 
 model Usuario {
-  id       String @id @default(uuid())
-  nome     String
-  email    String @unique
-  senha    String
-  nivel    String
-  denuncias Denuncia[]
+  id           String        @id @default(uuid())
+  nome         String
+  email        String        @unique
+  senha        String
+  nivel        String // "publico" ou "servidor"
+  denuncias    Denuncia[]
+  ocorrencias  Ocorrencia[]
+  notificacoes Notificacao[]
 }
 
 model Denuncia {
-  id          String @id @default(uuid())
+  id          String       @id @default(uuid())
   descricao   String
   localizacao String
-  status      String @default("pendente")
+  status      String       @default("pendente") // "pendente", "em análise", "resolvida"
   usuarioId   String?
-  usuario     Usuario? @relation(fields: [usuarioId], references: [id])
+  usuario     Usuario?     @relation(fields: [usuarioId], references: [id])
+  ocorrencias Ocorrencia[]
+}
+
+model Ocorrencia {
+  id            String   @id @default(uuid())
+  denunciaId    String   @unique
+  servidorId    String
+  status        String   @default("aberta") // "aberta", "em andamento", "concluída"
+  data_registro DateTime @default(now())
+
+  denuncia Denuncia @relation(fields: [denunciaId], references: [id])
+  servidor Usuario  @relation(fields: [servidorId], references: [id])
+}
+
+model Notificacao {
+  id         String   @id @default(uuid())
+  usuarioId  String
+  mensagem   String
+  data_envio DateTime @default(now())
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
 }
