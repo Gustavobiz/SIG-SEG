@@ -26,9 +26,11 @@ model Usuario {
 
 model Denuncia {
   id          String       @id @default(uuid())
+  codigo      String       @unique // Código de acompanhamento
+  titulo      String
   descricao   String
   localizacao String
-  status      String       @default("pendente") // "pendente", "em análise", "resolvida"
+  status      String       @default("pendente")
   usuarioId   String?
   usuario     Usuario?     @relation(fields: [usuarioId], references: [id])
   ocorrencias Ocorrencia[]
