@@ -5,9 +5,17 @@ const crypto = require("crypto");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-// Cria nova denuncia
+// Cria nova denúncia
 router.post("/nova", async (req, res) => {
-  const { descricao, localizacao } = req.body;
+  const { titulo, descricao, localizacao, cidade, estado } = req.body;
+
+  // Verifica se os dados estão chegando
+  console.log("Recebendo requisição:", req.body);
+
+  // Verifica se todos os campos foram enviados
+  if (!titulo || !descricao || !localizacao || !cidade || !estado) {
+    return res.status(400).json({ error: "Todos os campos são obrigatórios." });
+  }
 
   // Gera um código
   const codigo = crypto.randomBytes(4).toString("hex").toUpperCase();
@@ -27,9 +35,10 @@ router.post("/nova", async (req, res) => {
 
     res.status(201).json({
       message: "Denúncia registrada com sucesso!",
-      codigo: denuncia.codigo, // O usuario recebe o código
+      codigo: denuncia.codigo, // O usuário recebe esse código para acompanhamento
     });
   } catch (error) {
+    console.error("Erro ao criar denúncia:", error);
     res.status(500).json({ error: "Erro ao registrar denúncia" });
   }
 });
