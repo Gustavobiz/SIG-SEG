@@ -13,7 +13,7 @@ export default function Login() {
       <div className="login-content">
         {/* Imagem lateral */}
         <div className="login-image">
-          <img src="/images/login-bg.jpg" alt="Login Background" />
+          <img src="/images/camera.jpg" alt="Login Background" />
         </div>
 
         {/* Formulário de Login */}
