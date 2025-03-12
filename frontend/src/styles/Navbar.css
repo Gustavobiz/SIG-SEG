@@ -1,0 +1,90 @@
+/* Estilos gerais da Navbar */
+.navbar {
+  background-color: #f3f5f8;
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Container para alinhar itens */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo do logo */
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #234158;
+}
+
+.navbar-logo:hover {
+  color: #142c3e;
+}
+/* Botão de login */
+.btn-login {
+  background-color: #142c3e;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #375870;
+}
+
+/* Links de navegação */
+.navbar-links {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  color: #576181;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar-links a:hover {
+  color: #142c3e;
+}
+
+/* Estilos para mobile */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #142c3e;
+  cursor: pointer;
+}
+
+/* Tornando a navbar responsiva */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #006270;
+    padding: 10px;
+  }
+  .navbar-links a {
+    color: #f3f5f8;
+  }
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
