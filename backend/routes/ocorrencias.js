@@ -77,8 +77,8 @@ router.get("/todas", verificarToken, verificarServidor, async (req, res) => {
   try {
     const ocorrencias = await prisma.ocorrencia.findMany({
       include: {
-        denuncia: true, // Para trazer detalhes da denúncia associada
-        servidor: true, // Para trazer detalhes do servidor responsável
+        denuncia: true,
+        servidor: true,
       },
     });
 
