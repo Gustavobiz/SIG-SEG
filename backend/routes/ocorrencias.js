@@ -23,7 +23,7 @@ router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
       return res.status(404).json({ error: "Denúncia não encontrada" });
     }
 
-    // Criar ocorrência associada à denúncia
+    // Cria ocorrência associada à denúncia
     const ocorrencia = await prisma.ocorrencia.create({
       data: {
         denunciaId,
@@ -32,7 +32,7 @@ router.post("/criar", verificarToken, verificarServidor, async (req, res) => {
       },
     });
 
-    // Atualizar status da denúncia
+    // Atualiza status da denúncia
     await prisma.denuncia.update({
       where: { id: denunciaId },
       data: { status: "em análise" },
@@ -72,7 +72,7 @@ router.put(
   }
 );
 
-// Listar todas as ocorrências (somente servidores autenticados)
+// Lista todas as ocorrências
 router.get("/todas", verificarToken, verificarServidor, async (req, res) => {
   try {
     const ocorrencias = await prisma.ocorrencia.findMany({
