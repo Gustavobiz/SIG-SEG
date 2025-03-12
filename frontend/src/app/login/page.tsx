@@ -88,7 +88,7 @@ export default function Login() {
           </form>
 
           <p className="signup-link">
-            Você não tem uma conta? <Link href="#">Cadastre-se</Link>
+            Você não tem uma conta? <Link href="/cadastrar">Cadastre-se</Link>
           </p>
         </div>
       </div>
