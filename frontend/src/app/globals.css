@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎨 Cores personalizadas */
+@layer base {
+  :root {
+    --color-primary: #006270;
+    --color-secondary: #099394;
+    --color-accent: #00ecc7;
+    --color-white: #ffffff;
+    --color-dark: #1e293b;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    font-family: "Arial", sans-serif;
+  }
+}
+
+/* 🖌️ Classes utilitárias personalizadas */
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .text-accent {
+    color: var(--color-accent);
+  }
+}
