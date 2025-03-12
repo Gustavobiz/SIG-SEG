@@ -1,6 +1,6 @@
 # SIG-SEG
 
-## Sistema de Informação Gerencial para Secretaria de Segurança - React & PostgreSQL
+## Sistema de Informação Gerencial para Secretaria de Segurança - Next.js & PostgreSQL
 
 Este projeto fornece uma aplicação web para um Sistema de Informação Gerencial para Secretaria de Segurança, construída com React e alimentada por um banco de dados PostgreSQL.
 
