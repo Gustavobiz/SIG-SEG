@@ -105,7 +105,10 @@ input {
 .signup-link a:hover {
   text-decoration: underline;
 }
-
+.error-message {
+  color: red;
+  text-decoration: solid;
+}
 /* Responsividade */
 @media (max-width: 768px) {
   .login-content {

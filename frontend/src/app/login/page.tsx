@@ -2,11 +2,43 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import "@/styles/login.css"; // Importando estilos
+import { useRouter } from "next/navigation";
+import "@/styles/login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
+  const router = useRouter();
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault(); // Evita recarregar a página
+
+    try {
+      const response = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Erro ao fazer login");
+        return;
+      }
+
+      // Salva o token JWT no localStorage
+      localStorage.setItem("token", data.token);
+
+      // Redireciona para o dashboard
+      router.push("/dashboard");
+    } catch (error) {
+      setError("Erro no servidor. Tente novamente.");
+    }
+  };
 
   return (
     <div className="login-container">
@@ -20,32 +52,40 @@ export default function Login() {
         <div className="login-form">
           <h2>Entrar no SIG-SEG</h2>
 
-          <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Digite seu e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          {error && <p className="error-message">{error}</p>}
 
-          <label htmlFor="password">Senha</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Digite sua senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <form onSubmit={handleLogin}>
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
-          <div className="login-options">
-            <label>
-              <input type="checkbox" /> Lembre-se de mim
-            </label>
-            <Link href="#">Esqueceu sua senha?</Link>
-          </div>
+            <label htmlFor="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Digite sua senha"
+              value={senha} // Corrigido para "senha"
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
 
-          <button className="login-button">Conectar-se</button>
+            <div className="login-options">
+              <label>
+                <input type="checkbox" /> Lembre-se de mim
+              </label>
+              <Link href="#">Esqueceu sua senha?</Link>
+            </div>
+
+            <button className="login-button" type="submit">
+              Conectar-se
+            </button>
+          </form>
 
           <p className="signup-link">
             Você não tem uma conta? <Link href="#">Cadastre-se</Link>
