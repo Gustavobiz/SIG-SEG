@@ -1,0 +1,117 @@
+.cadastro-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Layout do conteúdo */
+.cadastro-content {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Imagem lateral */
+.cadastro-image {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #006270;
+}
+
+.cadastro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Formulário */
+.cadastro-form {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Botão de cadastro */
+.cadastro-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cadastro-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mensagens de erro e sucesso */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: green;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Link para login */
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cadastro-content {
+    flex-direction: column;
+  }
+
+  .cadastro-image {
+    width: 100%;
+    height: 250px;
+  }
+
+  .cadastro-form {
+    width: 100%;
+  }
+}
