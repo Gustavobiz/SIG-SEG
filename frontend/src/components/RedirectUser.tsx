@@ -16,18 +16,18 @@ export default function RedirectUser({
     const token = localStorage.getItem("token");
     const nivelUsuario = localStorage.getItem("nivel");
 
-    if (!token) {
+    //Caso esteja logado vai para as paginas dos servidores
+    if (token) {
       if (pageType === "denuncia") {
-        router.push("/denunciaServidor"); // Servidor -> Página de Denúncias
+        router.push("/denunciaServidor");
       } else {
-        router.push("/ocorrenciaServidor"); // Servidor -> Página de Ocorrências
-      } // Usuário não autenticado vai para o login
-    } else if (nivelUsuario === "servidor") {
+        router.push("/ocorrenciaServidor");
+      }
     } else {
       if (pageType === "denuncia") {
-        router.push("/denuncia"); // Público -> Página de Denúncias
+        router.push("/denuncia");
       } else {
-        router.push("/ocorrencia"); // Público -> Página de Ocorrências
+        router.push("/ocorrencia");
       }
     }
   }, [router, pageType]);
