@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/denuncias.css";
 import { useEffect, useState } from "react";
 import DenunciaCard from "@/components/DenunciaCard";
 

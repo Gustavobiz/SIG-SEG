@@ -12,7 +12,7 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault(); // Evita recarregar a página
+    e.preventDefault();
 
     try {
       const response = await fetch("http://localhost:5000/auth/login", {
@@ -30,11 +30,10 @@ export default function Login() {
         return;
       }
 
-      // Salva o token JWT no localStorage
       localStorage.setItem("token", data.token);
 
       // Redireciona para o dashboard
-      router.push("/dashboard");
+      router.push("/denuncias");
     } catch (error) {
       setError("Erro no servidor. Tente novamente.");
     }

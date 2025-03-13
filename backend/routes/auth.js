@@ -6,8 +6,10 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.post("/cadastrar", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
+    console.log("🔹 Dados recebidos no backend:", req.body);
+
     const { nome, email, senha, nivel } = req.body;
 
     if (!nome || !email || !senha || !nivel) {
@@ -15,6 +17,7 @@ router.post("/cadastrar", async (req, res) => {
         .status(400)
         .json({ error: "Todos os campos são obrigatórios." });
     }
+    const nivelUsuario = nivel || "publico";
 
     const userExists = await prisma.usuario.findUnique({ where: { email } });
     if (userExists) {
