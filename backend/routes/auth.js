@@ -6,12 +6,23 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
-  const { nome, email, senha, nivel } = req.body;
-
-  const hashedPassword = await bcrypt.hash(senha, 10);
-
+router.post("/cadastrar", async (req, res) => {
   try {
+    const { nome, email, senha, nivel } = req.body;
+
+    if (!nome || !email || !senha || !nivel) {
+      return res
+        .status(400)
+        .json({ error: "Todos os campos são obrigatórios." });
+    }
+
+    const userExists = await prisma.usuario.findUnique({ where: { email } });
+    if (userExists) {
+      return res.status(400).json({ error: "E-mail já cadastrado." });
+    }
+
+    const hashedPassword = await bcrypt.hash(senha, 10);
+
     const user = await prisma.usuario.create({
       data: {
         nome,
@@ -20,9 +31,11 @@ router.post("/register", async (req, res) => {
         nivel,
       },
     });
+
     res.status(201).json({ message: "Usuário registrado com sucesso!" });
   } catch (error) {
-    res.status(400).json({ error: "Erro ao registrar usuário" });
+    console.error("Erro no cadastro:", error);
+    res.status(500).json({ error: "Erro no servidor ao registrar usuário." });
   }
 });
 
