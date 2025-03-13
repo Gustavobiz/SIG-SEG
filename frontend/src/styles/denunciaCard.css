@@ -1,0 +1,75 @@
+.denuncia-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.denuncia-card:hover {
+  transform: scale(1.02);
+}
+
+/* Título */
+.denuncia-card h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #003f5c;
+}
+
+/* Descrição */
+.denuncia-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Localização */
+.denuncia-card span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Status  */
+.status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.status.pendente {
+  background: orange;
+  color: white;
+}
+
+.status.analise {
+  background: blue;
+  color: white;
+}
+
+.status.concluida {
+  background: green;
+  color: white;
+}
+
+/* Botão de Ver Detalhes */
+.btn-detalhes {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: white;
+  background: #006270;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn-detalhes:hover {
+  background: #004d56;
+}
