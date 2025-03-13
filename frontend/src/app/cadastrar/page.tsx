@@ -22,7 +22,7 @@ export default function Cadastrar() {
       nome,
       email,
       senha,
-      nivel: "publico",
+      nivel: "servidor",
     });
 
     try {
@@ -36,7 +36,7 @@ export default function Cadastrar() {
           nome: nome.trim(),
           email: email.trim(),
           senha: senha.trim(),
-          nivel: "publico",
+          nivel: "servidor",
         }),
       });
 
