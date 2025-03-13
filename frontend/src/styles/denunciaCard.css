@@ -1,39 +1,34 @@
+/* Estilo dos Cards */
 .denuncia-card {
+  margin-bottom: 70px;
   background: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  transition: transform 0.2s;
 }
 
 .denuncia-card:hover {
   transform: scale(1.02);
 }
 
-/* Título */
 .denuncia-card h3 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #003f5c;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
-/* Descrição */
 .denuncia-card p {
-  font-size: 1rem;
   color: #555;
-  margin-bottom: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
-/* Localização */
 .denuncia-card span {
+  display: block;
   font-size: 0.9rem;
   color: #666;
 }
 
-/* Status  */
 .status {
   font-weight: bold;
   padding: 5px 10px;
@@ -55,21 +50,4 @@
 .status.concluida {
   background: green;
   color: white;
-}
-
-/* Botão de Ver Detalhes */
-.btn-detalhes {
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: none;
-  color: white;
-  background: #006270;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.btn-detalhes:hover {
-  background: #004d56;
 }

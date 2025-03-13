@@ -67,7 +67,7 @@
 }
 
 .submit-btn:hover {
-  background-color: #0073a1;
+  background-color: #004d56;
 }
 
 .submit-btn:disabled {
@@ -83,19 +83,19 @@
 }
 
 .custom-select {
-  display: block; /* Garante que ocupe a linha toda */
-  width: 100%; /* Pode ajustar conforme necessário */
-  padding: 10px; /* Adiciona espaçamento interno */
-  font-size: 16px; /* Tamanho do texto */
-  border: 1px solid #ccc; /* Borda cinza clara */
-  border-radius: 5px; /* Bordas arredondadas */
-  background-color: white; /* Fundo branco */
-  color: #333; /* Cor do texto */
-  cursor: pointer; /* Indica que é interativo */
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
 }
 /* Ao focar no select */
 .custom-select:focus {
-  border-color: #007bff; /* Cor azul ao focar */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efeito de brilho ao redor */
-  outline: none; /* Remove a borda padrão do navegador */
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
 }

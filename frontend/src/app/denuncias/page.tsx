@@ -101,31 +101,27 @@ export default function Denuncias() {
           <DenunciaForm />
 
           {/* Pesquisa por Código */}
-          <h2>Pesquisar Denúncia</h2>
           <div className="pesquisa-container">
-            <input
-              type="text"
-              placeholder="Digite o código da denúncia"
-              value={codigoPesquisa}
-              onChange={(e) => setCodigoPesquisa(e.target.value)}
-            />
-            <button onClick={buscarDenunciaPorCodigo}>Buscar</button>
+            <h2>Pesquisar Denúncia</h2>
+            <div className="pesquisa-box">
+              <input
+                type="text"
+                placeholder="Digite o código da denúncia"
+                value={codigoPesquisa}
+                onChange={(e) => setCodigoPesquisa(e.target.value)}
+              />
+              <button
+                className="btn-detalhes"
+                onClick={buscarDenunciaPorCodigo}
+              >
+                Buscar
+              </button>
+            </div>
           </div>
 
           {/* Resultado da busca */}
           {denunciaEncontrada ? (
-            <div className="denuncia-card">
-              <h3>{denunciaEncontrada.titulo}</h3>
-              <p>{denunciaEncontrada.descricao}</p>
-              <span>
-                📍 {denunciaEncontrada.cidade} - {denunciaEncontrada.estado}
-              </span>
-              <span
-                className={`status ${denunciaEncontrada.status.toLowerCase()}`}
-              >
-                {denunciaEncontrada.status}
-              </span>
-            </div>
+            <DenunciaCard key={denunciaEncontrada.id} {...denunciaEncontrada} />
           ) : (
             codigoPesquisa && <p>Denúncia não encontrada.</p>
           )}

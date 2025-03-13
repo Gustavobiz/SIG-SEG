@@ -25,12 +25,9 @@ export default function DenunciaCard({
       <h3>{titulo}</h3>
       <p>{descricao}</p>
       <span>
-        {cidade} - {estado}
+        📍 {cidade} - {estado}
       </span>
       <span className={`status ${status.toLowerCase()}`}>{status}</span>
-      <Link href={`/denuncias/${id}`} className="btn-detalhes">
-        Ver Detalhes →
-      </Link>
     </div>
   );
 }
