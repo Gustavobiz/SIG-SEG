@@ -3,6 +3,8 @@
   padding: 40px;
   max-width: 1200px;
   margin: auto;
+  height: 80vh;
+  top: -40px;
 }
 
 /* Seção de Destaque */

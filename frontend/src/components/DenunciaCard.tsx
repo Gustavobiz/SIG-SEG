@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/denunciaCard.css";
 import Link from "next/link";
 
 interface DenunciaProps {

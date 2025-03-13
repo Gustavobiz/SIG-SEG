@@ -1,0 +1,101 @@
+.denuncia-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #006270; /* Cor de fundo do SIG-SEG */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.denuncia-box {
+  background: white;
+  width: 400px;
+  max-width: 90%;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header img {
+  width: 80px;
+}
+
+.denuncia-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.denuncia-form input,
+.denuncia-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.denuncia-form input:focus,
+.denuncia-form textarea:focus {
+  border-color: #008cba;
+}
+
+.denuncia-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.submit-btn {
+  background-color: #4c84c2; /* Azul SIG-SEG */
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0073a1;
+}
+
+.submit-btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.message {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.custom-select {
+  display: block; /* Garante que ocupe a linha toda */
+  width: 100%; /* Pode ajustar conforme necessário */
+  padding: 10px; /* Adiciona espaçamento interno */
+  font-size: 16px; /* Tamanho do texto */
+  border: 1px solid #ccc; /* Borda cinza clara */
+  border-radius: 5px; /* Bordas arredondadas */
+  background-color: white; /* Fundo branco */
+  color: #333; /* Cor do texto */
+  cursor: pointer; /* Indica que é interativo */
+}
+/* Ao focar no select */
+.custom-select:focus {
+  border-color: #007bff; /* Cor azul ao focar */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efeito de brilho ao redor */
+  outline: none; /* Remove a borda padrão do navegador */
+}
