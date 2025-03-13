@@ -1,11 +1,11 @@
-/* Estilizando a tela de login */
+/* Estiliza a tela de login */
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   position: relative;
-  top: -40px; /* Move para cima */
+  top: -40px;
 }
 
 /* Layout do conteúdo */

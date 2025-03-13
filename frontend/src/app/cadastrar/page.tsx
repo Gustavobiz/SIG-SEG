@@ -15,15 +15,34 @@ export default function Cadastrar() {
 
   const handleCadastro = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    console.log("Enviando para o backend:", {
+      nome,
+      email,
+      senha,
+      nivel: "publico",
+    });
 
     try {
-      const response = await fetch("http://localhost:5000/auth/cadastrar", {
+      const response = await fetch("http://localhost:5000/auth/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          nome: nome.trim(),
+          email: email.trim(),
+          senha: senha.trim(),
+          nivel: "publico",
+        }),
       });
 
       const data = await response.json();
+
+      console.log("🔹 Resposta do backend:", data);
 
       if (!response.ok) {
         setError(data.error || "Erro ao cadastrar");
@@ -33,7 +52,8 @@ export default function Cadastrar() {
       setSuccess("Cadastro realizado com sucesso!");
       setTimeout(() => router.push("/login"), 2000);
     } catch (error) {
-      setError("Erro no servidor. Tente novamente.");
+      console.error(" Erro na requisição:", error);
+      setError("Erro ao conectar ao servidor.");
     }
   };
 
