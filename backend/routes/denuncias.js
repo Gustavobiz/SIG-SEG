@@ -70,4 +70,15 @@ router.get("/consulta/:codigo", async (req, res) => {
   }
 });
 
+// Retorna todas as denúncias
+router.get("/todas", async (req, res) => {
+  try {
+    const denuncias = await prisma.denuncia.findMany();
+    res.json(denuncias);
+  } catch (error) {
+    console.error("Erro ao buscar denúncias:", error);
+    res.status(500).json({ error: "Erro ao buscar denúncias" });
+  }
+});
+
 module.exports = router;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import DenunciaCard from "@/components/DenunciaCard";
-import EstadoSelect from "@/components/selectEstados"; // <-- Importe o componente
+import EstadoSelect from "@/components/selectEstados";
 import "@/styles/denunciaServidor.css";
 
 interface Denuncia {
@@ -22,19 +22,23 @@ export default function DenunciaServidor() {
   const [denunciaEncontrada, setDenunciaEncontrada] = useState<Denuncia | null>(
     null
   );
+  const [isMounted, setIsMounted] = useState(false);
+  const [key, setKey] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
+    setIsMounted(true);
+    setTimeout(() => setKey((prev) => prev + 1), 100);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     fetch("http://localhost:5000/denuncias/todas")
       .then((res) => res.json())
       .then((data: Denuncia[]) => setDenuncias(data))
       .catch((error) => console.error("Erro ao buscar denúncias", error));
-  }, []);
-
-  const denunciasFiltradas =
-    estadoSelecionado === ""
-      ? denuncias
-      : denuncias.filter((denuncia) => denuncia.estado === estadoSelecionado);
+  }, [isMounted, key]);
 
   const buscarDenunciaPorCodigo = async () => {
     if (!codigoPesquisa) return;
@@ -55,8 +59,18 @@ export default function DenunciaServidor() {
     }
   };
 
+  if (!isMounted) {
+    return <div className="loading-screen">Carregando...</div>;
+  }
+
+  // Filtragem por estado
+  const denunciasFiltradas =
+    estadoSelecionado === ""
+      ? denuncias
+      : denuncias.filter((denuncia) => denuncia.estado === estadoSelecionado);
+
   return (
-    <div className="denuncias-container">
+    <div className="denuncias-container" key={key}>
       <h1>Gerenciamento de Denúncias</h1>
 
       {/* Filtro e Pesquisa na mesma linha */}
@@ -69,12 +83,12 @@ export default function DenunciaServidor() {
             value={codigoPesquisa}
             onChange={(e) => setCodigoPesquisa(e.target.value)}
           />
-          <button className="btn-detalhes" onClick={buscarDenunciaPorCodigo}>
+          <button className="submit-btn" onClick={buscarDenunciaPorCodigo}>
             Buscar
           </button>
         </div>
         {/* Filtro por Estado */}
-        <div className="filtro-box">
+        <div className="custom-select">
           <EstadoSelect
             name="estado"
             value={estadoSelecionado}
