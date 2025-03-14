@@ -35,7 +35,7 @@ router.post("/nova", async (req, res) => {
 
     res.status(201).json({
       message: "Denúncia registrada com sucesso!",
-      codigo: denuncia.codigo, // O usuário recebe esse código para acompanhamento
+      codigo: denuncia.codigo, // O usuário recebe esse código
     });
   } catch (error) {
     console.error("Erro ao criar denúncia:", error);

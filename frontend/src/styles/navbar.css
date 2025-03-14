@@ -33,6 +33,22 @@
   border-radius: 5px;
   color: white;
 }
+#btn {
+  color: white;
+}
+
+.btn-sair {
+  background-color: #142c3e;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+.btn-sair:hover {
+  background-color: #375870;
+}
 
 .btn-login:hover {
   background-color: #375870;

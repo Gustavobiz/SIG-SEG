@@ -1,6 +1,6 @@
 "use client";
+import "../styles/denunciaCard.css";
 
-import "@/styles/denunciaCard.css";
 import Link from "next/link";
 
 interface DenunciaProps {
@@ -25,7 +25,7 @@ export default function DenunciaCard({
       <h3>{titulo}</h3>
       <p>{descricao}</p>
       <span>
-        📍 {cidade} - {estado}
+        {cidade} - {estado}
       </span>
       <span className={`status ${status.toLowerCase()}`}>{status}</span>
     </div>

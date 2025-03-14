@@ -53,10 +53,12 @@ router.post("/login", async (req, res) => {
     return res.status(401).json({ error: "Senha inválida" });
 
   const token = jwt.sign(
-    { userId: user.id, nivel: user.nivel },
+    { userId: user.id, nivel: user.nivel }, // ✅ Adicionando 'nivel' no token
     process.env.JWT_SECRET,
     { expiresIn: "1h" }
   );
+
+  console.log("🔹 Enviando resposta do backend:", { token, nivel: user.nivel }); // 🔹 Verifique isso no terminal
 
   res.json({ token, nivel: user.nivel });
 });

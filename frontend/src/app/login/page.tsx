@@ -31,9 +31,16 @@ export default function Login() {
       }
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem("nivel", data.nivel);
 
-      // Redireciona para o dashboard
-      router.push("/denuncias");
+      console.log("🔹 Token salvo:", localStorage.getItem("token"));
+      console.log("🔹 Nível salvo:", localStorage.getItem("nivel"));
+
+      if (data.nivel === "servidor") {
+        router.push("/denunciaServidor");
+      } else {
+        router.push("/denuncias");
+      }
     } catch (error) {
       setError("Erro no servidor. Tente novamente.");
     }
@@ -69,7 +76,7 @@ export default function Login() {
               type="password"
               id="password"
               placeholder="Digite sua senha"
-              value={senha} // Corrigido para "senha"
+              value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
             />

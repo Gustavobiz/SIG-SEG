@@ -1,19 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import EstadoSelect from "@/components/selectEstados";
 import "@/styles/denunciaForm.css";
-
-const estadosNordeste = [
-  { sigla: "AL", nome: "Alagoas" },
-  { sigla: "BA", nome: "Bahia" },
-  { sigla: "CE", nome: "Ceará" },
-  { sigla: "MA", nome: "Maranhão" },
-  { sigla: "PB", nome: "Paraíba" },
-  { sigla: "PE", nome: "Pernambuco" },
-  { sigla: "PI", nome: "Piauí" },
-  { sigla: "RN", nome: "Rio Grande do Norte" },
-  { sigla: "SE", nome: "Sergipe" },
-];
 
 export default function DenunciaForm() {
   const [formData, setFormData] = useState({
@@ -48,7 +37,7 @@ export default function DenunciaForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setCodigoGerado(data.codigo); // Agora esta variável existe!
+        setCodigoGerado(data.codigo);
         alert(`Denúncia registrada com sucesso!\nCódigo: ${data.codigo}`);
         setFormData({
           titulo: "",
@@ -106,21 +95,12 @@ export default function DenunciaForm() {
             required
           />
 
-          {/* Select para Estados do Nordeste */}
-          <select
-            className="custom-select"
+          {/* Componente de Select para Estados */}
+          <EstadoSelect
             name="estado"
             value={formData.estado}
             onChange={handleChange}
-            required
-          >
-            <option value="">Selecione um Estado</option>
-            {estadosNordeste.map((estado) => (
-              <option key={estado.sigla} value={estado.sigla}>
-                {estado.nome}
-              </option>
-            ))}
-          </select>
+          />
 
           <button type="submit" className="submit-btn">
             Registrar Denúncia
