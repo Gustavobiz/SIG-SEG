@@ -149,4 +149,8 @@ Caso tenha dúvidas ou sugestões, entre em contato:
 
 ---
 
+## Obs:
+
+Tive algumas dificuldades com a nova versão do tailwindcss, e como o prazo era muito curto achei muito arriscado parar para pode me atualizar, e fui na alternativa que achei que era a mais segura, css puro, no entanto foi um erro, uma vez que isso acarreta problemas com o Next, uma vez que o css não vem pronto do servidor, resultando em bugs em algumas paginas, sendo necessário atualização das paginas.
+
 ### Desenvolvido com dedicação para facilitar a segurança e comunicação entre cidadãos e servidores públicos!
