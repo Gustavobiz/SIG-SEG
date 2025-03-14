@@ -1,64 +1,152 @@
-# SIG-SEG
+# SIG-SEG - Sistema de Gerenciamento de Segurança
 
-## Sistema de Informação Gerencial para Secretaria de Segurança - Next.js & PostgreSQL
+### Um sistema para registro e monitoramento de denúncias e ocorrências
 
-Este projeto fornece uma aplicação web para um Sistema de Informação Gerencial para Secretaria de Segurança, construída com React e alimentada por um banco de dados PostgreSQL.
+## Sobre o Projeto
 
-### Recursos
+O **SIG-SEG** é um sistema web desenvolvido para permitir que cidadãos registrem denúncias de eventos suspeitos e que servidores públicos gerenciem essas denúncias, aprovando-as para torná-las ocorrências. O sistema fornece uma interface amigável para o registro, consulta e administração de denúncias e ocorrências.
 
-...
+---
 
-### Instalação e Execução
+## Tecnologias Utilizadas
 
-#### Pré-requisitos
+### **Frontend:**
 
-- Node.js e npm instalados em seu sistema.
-- Banco de dados PostgreSQL instalado e configurado.
+- **Next.js**
+- **React.js**
+- **TypeScript**
+- **CSS puro**
 
-#### Passos
+### **Backend:**
 
-1. **Clone o repositório:**
+- **Node.js** (Express)
+- **PostgreSQL** (Banco de Dados)
+- **Prisma ORM**
+- **JWT (JSON Web Token)** para autenticação
 
+### **Outras Ferramentas:**
+
+- **Git e GitHub** (controle de versão)
+
+---
+
+## Como Instalar e Rodar o Projeto
+
+### **Clone o Repositório**
+
+```bash
+  git clone https://github.com/seu-usuario/SIG-SEG.git
+  cd SIG-SEG
+```
+
+### **Configuração do Backend**
+
+1. **Acesse a pasta do backend:**
    ```bash
-   git clone https://github.com/seu-nome-de-usuario/monitor-de-criptomoedas.git
-
+   cd backend
    ```
-
 2. **Instale as dependências:**
-
-   ```
-   cd backend
+   ```bash
    npm install
    ```
-
+3. **Configure o banco de dados no `.env` (exemplo):**
+   ```env
+   DATABASE_URL=postgresql://usuario:senha@localhost:5432/sigseg
+   JWT_SECRET=seu_segredo_jwt
    ```
-   cd frontend
+4. **Rode as migrações do Prisma:**
+   ```bash
+   npx prisma migrate dev
+   ```
+5. **Inicie o backend:**
+   ```bash
+   npm start
+   ```
+
+### **Configuração do Frontend**
+
+1. **Volte para a raiz do projeto e acesse a pasta do frontend:**
+   ```bash
+   cd ../frontend
+   ```
+2. **Instale as dependências:**
+   ```bash
    npm install
    ```
-
-3. **Configure as credenciais do banco de dados:**
-
-- Navegue até o arquivo backend/.env.
-- Substitua os valores de espaço reservado pelas suas próprias credenciais do banco de dados PostgreSQL:
-  ```
-  DATABASE_URL=postgresql://seu_nome_de_usuario:sua_senha@seu_host:sua_porta/seu_banco_de_dados
-  ```
-
-4. **Execute o servidor de back-end:**
+3. **Inicie o frontend:**
+   ```bash
+   npm run dev
    ```
-   cd backend
-   npm start
-   ```
-5. **Execute a aplicação de front-end:**
-   ```
-   cd frontend
-   npm start
-   ```
-6. **Acesse a aplicação:**
 
-- A aplicação agora deve estar acessível em seu navegador em http://localhost:3000.
+---
 
-### Estrutura do Projeto
+## Rotas e Funcionalidades
 
-- **backend:** Contém o código do lado do servidor responsável por buscar dados de APIs, interagir com o banco de dados e servir dados para o front-end.
-- **frontend:** Contém a aplicação React responsável por renderizar a interface do usuário e lidar com as interações do usuário.
+### 🔹 **Autenticação**
+
+- `POST /auth/login` → Faz login e retorna o token JWT.
+- `POST /auth/register` → Cadastra um novo usuário.
+
+### 🔹 **Denúncias**
+
+- `POST /denuncias/nova` → Registra uma nova denúncia.
+- `GET /denuncias/todas` → Retorna todas as denúncias.
+- `GET /denuncias/consulta/:codigo` → Busca uma denúncia pelo código.
+- `PUT /denuncias/status/:id` → Atualiza o status da denúncia.
+
+### 🔹 **Ocorrências**
+
+- `POST /ocorrencias/criar` → Cria uma ocorrência a partir de uma denúncia.
+- `GET /ocorrencias/todas` → Retorna todas as ocorrências.
+- `PUT /ocorrencias/atualizar/:usuarioId` → Atualiza o status de uma ocorrência.
+
+---
+
+## Capturas de Tela
+
+### **Página de Login**
+
+![Tela de Login](https://github.com/Gustavobiz/SIG-SEG/blob/main/frontend/public/images/login.jpeg)
+
+### **Página de Cadastro**
+
+![Tela de Cadastro](https://github.com/Gustavobiz/SIG-SEG/blob/main/frontend/public/images/cadastro.jpeg)
+
+### **Página de Tela de Denuncia pública**
+
+Você é direcionado para essa página caso clique em Denunciar e não tiver Login, depois de fazer sua denuncia um código é gerado!
+![Tela de Denuncia pública](frontend/public/images/DenunciaPublica.jpeg)
+
+### **Página de Tela de Denuncia pública buscando denuncia por código**
+
+![Tela de Denuncia pública buscando denuncia](https://github.com/Gustavobiz/SIG-SEG/blob/main/frontend/public/images/BuscaPorCodigo.jpeg)
+
+### **Página de Tela de Denuncia servidor**
+
+Você é direcionado para essa página caso clique em Denunciar e tiver Logado, você pode ver todas as denuncias, pesquisar pelo código, separar por Estado e criar uma ocorrencia a partir de uma denuncia!
+![Tela de Denuncia Servidor](https://github.com/Gustavobiz/SIG-SEG/blob/main/frontend/public/images/DinunciaServidor.jpeg)
+
+### **Token gerado ao fazer Login**
+
+![Tela de Login token](https://github.com/Gustavobiz/SIG-SEG/blob/main/frontend/public/images/LoginTok.jpeg)
+
+### **Criando Ocorrencia Token**
+
+![Tela de Login token](https://github.com/Gustavobiz/SIG-SEG/blob/main/frontend/public/images/CriarOcorrencia.jpeg)
+
+## Licença
+
+Este projeto é licenciado sob a **MIT License** - veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## Contato
+
+Caso tenha dúvidas ou sugestões, entre em contato:
+
+- **Email:** gustavobernardes05@hotmail.com
+- **GitHub:** [Gustavobiz](https://github.com/Gustavobiz)
+
+---
+
+### Desenvolvido com dedicação para facilitar a segurança e comunicação entre cidadãos e servidores públicos!
