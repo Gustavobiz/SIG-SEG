@@ -86,3 +86,24 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
+
+.aprovar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-aprovar {
+  background-color: #004d56;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn-aprovar:hover {
+  background-color: #218838;
+}
