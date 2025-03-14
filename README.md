@@ -35,7 +35,7 @@ O **SIG-SEG** é um sistema web desenvolvido para permitir que cidadãos registr
 ### **Clone o Repositório**
 
 ```bash
-  git clone https://github.com/seu-usuario/SIG-SEG.git
+  git clone https://github.com/Gustavobiz/SIG-SEG.git
   cd SIG-SEG
 ```
 
